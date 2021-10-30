@@ -2,12 +2,13 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-//reachinng out to each library file.
+//reaching out to each library file.
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 
-
+// Reach the html template
+const htmlFile = require('./src/writeFileHtml');
 //create an empty array that will hold the employees
 const employeeArray = [];
 
@@ -242,34 +243,15 @@ const promptIntern = () => {
 
 const generateHtml = () => {
     console.log(employeeArray)
+    console.log("Team profile created!")
+
+    fs.writeFile('./dist/index.html', htmlFile(employeeArray), err => {
+        if (err) {
+          reject(err);
+          return;
+        }
+    });
+
 }
-// create tests to test each library file to make sure they all run properly
-
-
-
-// Run program
-//start by running Manager because there will be only one manager
-//send manager information to employee
-
-
-
-//prompt user to add an engineer or intern or finish
-// when selecting engineer or intern then they are sent to the proper selection questions
-// once the questions are filled out then that info is sent to the employee list 
-
-
-
-//then the user is prompted again for a choice
-// if the user selects finish
-
-// takes the array holding the employees and writes the html page in the dist folder
-
-
-
-
-// in the src is where the CSS is stored and also where the HTML template is
-
-
-
 
 promptManager()
